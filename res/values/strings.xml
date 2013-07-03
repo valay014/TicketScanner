@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TicketScanner</string>
+    <string name="showid">Show ID</string>
+    <string name="signin">Sign In</string>
+    <string name="username">User Name</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_summary">Summary</string>
+    <string name="eos">End Of Show \\n Successfull</string>
+    <string name="ttts">Total Tickets To Scan:</string>
+    <string name="hundred">100</string>
+    <string name="duo">Data uploaded Online</string>
+    <string name="ttso">Total Tickets Scanned Online:</string>
+    <string name="thts">Total Hard Tickets Scanned:</string>
+    <string name="close">Close</string>
+    <string name="exit">Exit</string>
+
+</resources>

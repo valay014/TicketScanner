@@ -1,0 +1,188 @@
+
+Scandit SDK Changelog
+
+Changes in ScanditSDK 3.2.0 - November 8th 2012
+
+* QR code scanning module is now enabled by default - previously the QR code 
+scanner was disabled by default and had to be enabled by the corresponding API method. 
+
+* Added new API method that allows developers to reduce memory footprint of the Scandit SDK when it is not active within an app (ScanditSDKBarcodePicker.cleanup()). We suggest to invoke the method once the barcode scanning activity views have been garbage collected, i.e. we recommend to call this method with a ~1 second delay after the scanning activities is dismissed. 
+
+* Improved Scan Performance on some Android Low-End Devices where the scan performance 
+was not optimal because the Scandit SDK did not choose the right camera resolution.
+
+* Fixed bug in Code128 and Datamatrix implementation that did not correctly 
+decode GS1-128 and GS1-Datamatrix subtypes and used a misleading key for CODE128 in 
+the results dictionary.  
+IMPORTANT: Note that this bug fix has important implications if you 
+are using the Code-128 or Datamatrix barcoder decoder today (see note below).
+
+IMPORTANT NOTE for Code128 and Datamatrix barcode users: 
+In previous versions, the Scandit SDK implementation disregarded the FC1 symbol. 
+As a result, developers could not detect that a particular Code128 was in effect
+ a GS1-128 code and/or the end of variable length fields of GS1-128 codes. 
+The same applies to GS1 Datamatrix codes. This new release of the Scandit SDK 
+now returns GS1-128 and GS1-Datamatrix codes with the keyword "GS1-128" and 
+"GS1-DATAMATRIX" respectively. Non-GS1 128 codes are returned as CODE128 (previously EAN128). 
+Variable length fields are terminated by ASCII symbol 29 ('GS'). If you 
+have previously used the keywords "CODE128" or "DATAMATRIX", you will
+ need to consider adjusting your code based on the above.
+
+Changes in ScanditSDK 3.1.17 - August 30th 2012
+
+* it is no longer necessary to pass the R.raw class to the ScanditSDKBarcodePicker.
+
+Changes in ScanditSDK 3.1.16 - August 15th 2012
+
+* critical bug fix to prevent memory access error that can occur on Android devices that have low resolution cameras and which can lead to app crash
+
+* software update to reduce memory consumption of camera 
+
+Changes in ScanditSDK 3.1.15 - August 7th 2012
+
+* software update to prevent torch failure and camera misconfiguration on Nexus S on Android 4.0+ which arise from the device not supporting the setSceneMode(SCENE_MODE_BARCODE) Android API method. 
+
+* simplified memory management by changing the preview callback to use the same byte buffer on Android 2.2+
+
+* fixed an issue in the torch implementation where the torch button could end up out of sync with the torch state after repeated button clicks.
+
+Changes in ScanditSDK 3.1.14 - July 18 2012
+
+* added new API methods to enable the decoder for micro Datamatrix codes
+
+* improved scanning of long Code39 barcodes (e.g. VIN numbers)
+
+* improved scanning of long vertical barcodes in the image
+
+* software update to address a couple of minor issues including the elimination of a memory leak
+
+* deprecated showMostLikelyBarcodeUIElement method of ScanditSDKOverlay
+
+Changes in ScanditSDK 3.1.13 - July 10th 2012
+
+* modified autofocus control for devices without macro-mode. This reduces the frequency with which the autofocus is triggered. 
+
+Changes in ScanditSDK 3.1.12 - July 9th 2012
+
+* new release types based on new Scandit SDK product offering 
+
+* license key file is no longer needed - registration is now via app key only 
+
+Changes in ScanditSDK 3.1.11 - June 29th 2012
+
+* fixed critical bug introduced in 3.1.10 in Code128 implementation
+
+Changes in ScanditSDK 3.1.10 - June 26th 2012
+
+* software update to address critical issue on some Samsung Galaxy Note models that leads to app crashes.
+
+* software update to address critical issue when Scandit SDK scanner was active without a network connection for an extended time. 
+
+* software update that improves decoding of Code39, Code128 and ITF codes and reduces false positives
+
+* software update to prevent app crashes when user switches LED on and off repeatedly and rapidly.
+
+* software update to scan view where white rectangle is now drawn bold to make it better visible on devices with a high resolution. 
+
+* software update to address problems when using proguard. 
+
+Changes in ScanditSDK 3.1.9 - April 12th 2012
+
+* software update to address LED/flashlight issue on Samsung devices. On most Samsung devices, the flashlight cannot be switched on/off while the camera is running. Restarting the camera to switch on/off the camera introduces unfortunately a delay, but it is the only way to have a functional flashlight implementation across different Android devices. 
+
+* software update on SGH-T959 and SGHI897 to prevent crashes that are caused by exception inside Android Camera API method getSupportedPreviewFrameRates.
+
+* software update to address problems on some Android devices that do not support method invocation of Android Camera API method setParameter correctly. 
+
+* software update to improve decoding performance of small, short ITF barcodes.
+
+Changes in ScanditSDK 3.1.8 - March 26th 2012
+
+* critical software update for Samsung Galaxy Note caused by the device not implementing the camera API parameter SCENE_MODE_BARCODE correctly (available since Android API Level 8). 
+Without this software update, apps embedding the Scandit SDK will crash on the Samsung Galaxy Note when the camera is started.     
+
+Changes in ScanditSDK 3.1.7 - February 10th 2012
+
+* added option to "stretch" camera preview to aspect ratio of the display
+
+Changes in ScanditSDK 3.1.6 - January 24th 2012
+
+* fixed bug that could generate RuntimeException when initiating camera on some Android devices
+
+* fixed bug in torch implementation
+
+Changes in ScanditSDK 3.1.5 - January 9th 2011
+
+* fixed bug that was causing black scan screen on some Android devices
+
+* fixed bug that was causing app crashes when Scandit SDK was used on Android 2.1 devices with default ScanditSDKBarcodePicker in landscape mode
+
+* modified resolution and frame rate selection approach to better support Android devices that do not implement Android specs correctly
+
+Changes in ScanditSDK 3.1.4 - December 20th 2011
+
+* fixed bug that was causing app crashes under Android 4.0.*
+
+* added custom camera control for LG Optimus V which does not report supported resolution and frame rate correctly 
+
+Changes in ScanditSDK 3.1.3 - November 30th 2011
+
+* fixed bug that resulted in barcodes being highlighted in the wrong place on Android devices with front-facing cameras
+
+Changes in ScanditSDK 3.1.2 - November 16th 2011
+
+* fixed bug in scananalytics feature that was causing app crashes when location tracking was activated. 
+
+Changes in ScanditSDK 3.1.1 - October 21th 2011
+
+* Fixed bug that caused crashes on Android 2.1 devices when scanning QR and Datamatrix codes
+
+* QR and Datamatrix symbology is now disabled by default and needs to be enabled via the API if your app processes QR and/or Datamatrix barcodes. 
+
+* changed the way the camera image is rendered to the screen. Previously, a scaled camera image was shown on the screen when the camera resolution did not match the screen resolution. This is changed in this release, where we maintain the aspect ratio of the camera image and add small black bars where necessary. 
+
+* fixed bug that led to app crash when the camera initialization was interrupted.
+
+* added example on how to integrate image into scan view 
+
+Changes in ScanditSDK 3.1.0 - October 7th 2011
+
+* added support for QR and DataMatrix symbologies
+
+Changes in ScanditSDK 3.0.2 - October 6th 2011
+
+* fixed a bug that caused app crashes with legacy scan view on some Android devices. 
+
+* fixed a bug that occurred on Samsung Galaxy Tab (and possibly other devices) where the camera preview image appeared 90 degrees rotated and the keyboard was always visible. 
+
+* fixed a bug that caused problems with devices that did not implement torch capability correctly which led to an app crash after the user selected the torch icon. 
+
+* fixed null pointer exception that occurred in rare cases when users interacted with the buttons in the user interface. 
+
+* added additional guards when resources are missing from the res/raw folder
+
+* fixed bug in legacy view controller where hidden buttons could still be pressed by user
+
+Changes in ScanditSDK 3.0.1 - September 18th 2011
+
+* fixed a bug in the methods that allows developers to set the size of the view controller and the method to set the scanning hotspot
+
+* the Samsung Galaxy Tab with Android 2.2 does not support the camera preview in portrait view. The ScanditSDKBarcodePicker.canRunPortraitPicker() method incorporates this and will return false for the Galaxy Tab with Android 2.2.
+
+Changes in ScanditSDK 3.0.0 - September 8th 2011
+
+* introduces a new scan view that uses the portrait camera preview available 
+in Android 2.2 and higher. This new scan view allows for scanning in portrait mode, 
+customization of the scan screen with native Android UI elements as well as 
+resizing of the camera preview. It also provides the common Android look&feel.
+
+* note that the above scan view approach, which is new in Scandit SDK 3.0, is 
+not compatible with Android devices that run Android 2.1 because 
+Android 2.1 does not allow for a camera preview in portrait mode. If these 
+devices need to be supported by your application, Scandit SDK 3.0+ provides 
+two alternatives: use the new scan view in landscape mode or use the legacy 
+scan view that we originally developed to allow for portrait scanning on 
+Android 2.1 devices. This legacy scan view does not have the customization 
+capabilities of the new Scandit SDK 3.0 scan view, but also works on 
+Android 2.2+ devices. 
+

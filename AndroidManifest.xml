@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mirasense.scanditsdkdemo"
+    android:versionCode="3"
+    android:versionName="3.2.0" >
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" >
+    </uses-permission>
+
+    <application
+        android:debuggable="true"
+        android:icon="@drawable/ticketicon"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Black.NoTitleBar" >
+        <activity
+            android:name="com.mirasense.demos.TicketScannerBarcodeActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:screenOrientation="sensor" >
+            
+        </activity>
+        <activity
+            android:name="com.mirasense.demos.TicketScanner"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+          
+        </activity>
+        <activity
+            android:name="com.mirasense.scanditsdkdemo.LoginActivity"
+            android:label="@string/login_progress_signing_in"
+            android:windowSoftInputMode="adjustResize|stateVisible" >          
+        </activity>
+        <activity
+            android:name="com.mirasense.scanditsdkdemo.Summary"
+            android:label="@string/title_activity_summary" >     
+            
+        </activity>
+    </application>
+
+    <uses-sdk android:minSdkVersion="8" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera.flash" />
+
+    <uses-permission android:name="android.permission.SET_DEBUG_APP" >
+    </uses-permission>
+    
+     <uses-feature android:name="android.hardware.camera" />
+      <uses-feature android:name="android.hardware.camera.autofocus" />
+
+</manifest>
